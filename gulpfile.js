@@ -93,7 +93,7 @@ gulp.task('css:dist', function () {
 gulp.task('js:dist', function () {
   return gulp.src(paths.srcJS)
     .pipe(babel({
-    presets: ['es2015']
+    presets: ['env']
     }))
     .pipe(concat('script.min.js'))
     .pipe(uglify())

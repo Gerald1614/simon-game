@@ -1,0 +1,10 @@
+body {
+  font-family: 'Roboto Mono', monospace;
+}
+img {
+  width: 20%;
+}
+.board {
+  max-width: 600px;
+ margin: 0 auto
+}
