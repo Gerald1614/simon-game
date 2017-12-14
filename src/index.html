@@ -10,6 +10,7 @@
     <title>Simon Game</title>
     <link rel="icon" href="./images/simon.ico.png" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <!-- inject:css -->
@@ -25,22 +26,41 @@
     </div>
                 
     <div class="container-fluid">
-      <div class="board">
-        <svg width="100%" height="100%" viewBox="0 0 440 440" class="donut">
-            <circle class="donut-hole" cx="220" cy="220" r="159.1549430918952" fill="#fff"></circle>
-            <circle class="donut-ring" cx="220" cy="220" r="159.1549430918952" fill="transparent" stroke="#ff0000" stroke-width="120"></circle>
-            <circle class="donut-segment" cx="220" cy="220" r="159.1549430918952" fill="transparent" stroke="#0000CC" stroke-width="120" stroke-dasharray="250 750" stroke-dashoffset="0"></circle>
-            <circle class="donut-segment" cx="220" cy="220" r="159.1549430918952" fill="transparent" stroke="#FFFF00" stroke-width="120" stroke-dasharray="250 750" stroke-dashoffset="750"></circle>
-            <circle class="donut-segment" cx="220" cy="220" r="159.1549430918952" fill="transparent" stroke="#008000" stroke-width="120" stroke-dasharray="250 750" stroke-dashoffset="500"></circle>
-          <foreignobject class="node" x="200" y="200" width="40" height="40">
-                      <button type="button" class="btn btn-secondary btn-sm">Left</button>
-                      <button type="button" class="btn btn-secondary btn-sm">Middle</button>
-                      <button type="button" class="btn btn-secondary btn-sm">Right</button>
 
+      <div class="board">
+        <svg width="100%" height="100%" viewBox="0 0 480 480" class="donut">
+            <circle class="donut-hole" cx="240" cy="240" r="240" fill="#000"></circle>
+            <circle id="1" class="donut-ring" cx="240" cy="240" r="159.1549430918952" fill="transparent" stroke="#ff0000" stroke-width="120"></circle>
+            <circle id="2" class="donut-segment" cx="240" cy="240" r="159.1549430918952" fill="transparent" stroke="#0000CC" stroke-width="120" stroke-dasharray="250 750" stroke-dashoffset="0"></circle>
+            <circle id="4" class="donut-segment" cx="240" cy="240" r="159.1549430918952" fill="transparent" stroke="#CCCC00" stroke-width="120" stroke-dasharray="250 750" stroke-dashoffset="750"></circle>
+            <circle id="3" class="donut-segment" cx="240" cy="240" r="159.1549430918952" fill="transparent" stroke="#008000" stroke-width="120" stroke-dasharray="250 750" stroke-dashoffset="500"></circle>
+            <rect id="green" data-colorIndex="3" x="0" y="0" width="240" height="240" style="fill-opacity:0;" />
+            <rect id="red" data-colorIndex="1" x="240" y="0" width="240" height="240" style="fill-opacity:0;"/>
+            <rect id="yellow" data-colorIndex="4" x="0" y="240" width="240" height="240" style="fill-opacity:0;"/>
+            <rect id="blue" data-colorIndex="2" x="240" y="240" width="240" height="240" style="fill-opacity:0;"/>
+            <foreignobject class="node" x="140" y="140" width="200" height="200">
+              <div class="row justify-content-center">
+                <div>SIMONS</div>
+              </div>
+
+                  <div class="row justify-content-center">
+                      <button class="button btnStart" onclick="startGame()">start</button>
+                      <button class="button btnStrict" onclick="strictMode()">strict</button>
+                </div>
+                <div class="row justify-content-center">
+                    <div>COUNTS: </div>
+                    <div id="score">00</div>
+                  </div>
+                <div class="row  justify-content-center">
+
+              </div>
           </foreignobject>
           </svg>
+
         </div>
-       
+        <audio id="audio">
+            Your browser does not support the audio element.
+          </audio>
     </div>
     <!--[htmlclean-protect]-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
