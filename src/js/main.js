@@ -6,6 +6,7 @@ let yellowTile= document.getElementById("4");
 let score = document.getElementById("score");
 let serie=[];
 let round=0;
+let long=0;
 let responses=[];
 let audio = document.getElementById("audio");
 
@@ -55,22 +56,33 @@ function mouseIn(e) {
 
 
 function checkSound(tile) {
-  audio.play();
-responses.push(tile.srcElement.dataset.colorindex);
-console.log(responses)
- for (let i=0; i<responses.length; i++) {
-  if (Number(responses[i]) == serie[i]) {
+  responses.push(tile.srcElement.dataset.colorindex);
+  console.log(responses);
+
+
+    if (Number(responses[long]) == serie[long]) {
+      audio.src = audiotrack[tile.srcElement.dataset.colorindex-1];
+      long+=1;
+    }
+    else {
+      audio.src = wrongAnswer;
+      responses=[];
+      long=0;
+      }
+      var playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise
+        .then(_ => {
+            })
+      }
+
+  if (responses.length == round+1) {
+    responses=[];
     console.log("woooo");
     round+=1;
+    long=0;
+    setTimeout(function() {playSound()}, 1000);
   }
-  else {
-   audio.src = wrongAnswer;
-   audio.play();
-   reponses=[];
-  }
-  playSound();
- }
-
 }
 
 
@@ -99,24 +111,30 @@ function resetGame() {
   responses=[];
 }
 
-function playSound() {
-  for(let i=0; i<round+1; i++) {
+async function playSound() {
 
+  for(let i=0; i<round+1; i++) {
+    console.log(i)
+    console.log(serie[i]);
     setTimeout(function() {
-      audio.src = audiotrack[serie[round]-1];
-      audio.play();  
+    audio.src = audiotrack[serie[i]-1];
+    var playPromise = audio.play();  
+      console.log(audio.src);
       let color = document.getElementById(serie[round]).getAttribute('stroke')
       let newColor = LightenDarkenColor(color, 60);
       document.getElementById(serie[round]).setAttribute('stroke', newColor);
       setTimeout(function() {document.getElementById(serie[round]).setAttribute('stroke', color)}, 1000);
-
-
-    }, 2000);
- 
+      if (playPromise !== undefined) {
+        playPromise.then(_ => {
+          
+        })
+        .catch(error => {
+          console.log("error")
+        });
+      }
+  }, 1000)};
   }
- 
 
-}
 
 
 function LightenDarkenColor(col, amt) {
