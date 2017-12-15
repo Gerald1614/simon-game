@@ -10,12 +10,12 @@ img {
   background: red; /* For browsers that do not support gradients */
   background: linear-gradient(red, yellow, green, blue); /* Standard syntax (must be last) */
   }
-#score {
+#score,#labelScore {
   color:red;
-  background-color: #282828;
-  padding: 2px;
+  padding: 5px;
   border-radius: 5%;
   font-family: 'Press Start 2P', cursive;
+  font-size: 90%;
 }
 circle  {
   z-index: 5000;
@@ -44,6 +44,11 @@ circle  {
 }
 .btnStrict {
   background-color: yellow;
+}
+
+.selected {
+  background:yellowgreen;
+  border: 4px solid gray; 
 }
 
 .row {
