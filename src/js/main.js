@@ -30,11 +30,13 @@ function mouseOut(e) {
 }
 
 function checkSound(tile) {
+  let ind = tile.srcElement.dataset.colorindex;
   if(playerTurn) {
-  responses.push(tile.srcElement.dataset.colorindex);
-
+  responses.push(ind);
+  document.getElementById(ind).classList.toggle("sel"+ind);
+  setTimeout(function() {document.getElementById(ind).classList.toggle("sel"+ind);}, 1200);
     if (Number(responses[long]) == serie[long]) {
-      audio.src = audiotrack[tile.srcElement.dataset.colorindex-1];
+      audio.src = audiotrack[ind-1];
       long+=1;
     }
     else {
@@ -52,7 +54,7 @@ function checkSound(tile) {
 
     if (responses.length == round.length) {
       playerTurn=false;
-      if (round===20) {
+      if (round==3) {
         score.innerHTML="WIN";
         setTimeout(function() {startGame()}, 5000);
       }
@@ -123,9 +125,8 @@ function playSound(elem) {
     
   if (playPromise !== undefined) {
     playPromise.then(_ => {
-      let sel="sel"+elem;
-      document.getElementById(elem).classList.toggle( sel );
-      setTimeout(function() {document.getElementById(elem).classList.toggle( sel);}, 1200);
+      document.getElementById(elem).classList.toggle("sel"+elem);
+      setTimeout(function() {document.getElementById(elem).classList.toggle("sel"+elem);}, 1200);
     })
     .catch(error => { });
   }

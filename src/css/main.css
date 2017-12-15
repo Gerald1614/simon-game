@@ -40,7 +40,7 @@ circle  {
 }
 
 .btnStart {
-  background-color: red;
+  background-color: rgb(255, 0, 0);
 }
 .btnStrict {
   background-color: yellow;
@@ -52,10 +52,10 @@ circle  {
 }
 
 .sel1 {
-  stroke: rgb(255, 41, 3);
+  stroke: #ff0303;
 }
 .sel2 {
-  stroke: #0000fd;
+  stroke: #002efd;
 }
 .sel3 {
   stroke: #fdfd02;
