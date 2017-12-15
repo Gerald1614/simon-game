@@ -23,7 +23,7 @@ circle  {
 .board {
   max-width: 600px;
  margin: 0 auto;
- color:gray;
+ color:white;
 }
 
 .button {
@@ -36,7 +36,7 @@ circle  {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 100%;
+  font-size: 80%;
 }
 
 .btnStart {
@@ -49,6 +49,19 @@ circle  {
 .selected {
   background:yellowgreen;
   border: 4px solid gray; 
+}
+
+.sel1 {
+  stroke: rgb(255, 41, 3);
+}
+.sel2 {
+  stroke: #0000fd;
+}
+.sel3 {
+  stroke: #fdfd02;
+}
+.sel4 {
+  stroke: #02ff02;
 }
 
 .row {

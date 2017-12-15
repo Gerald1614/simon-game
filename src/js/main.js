@@ -1,8 +1,5 @@
 
-let redTile= document.getElementById("1");
-let blueTile= document.getElementById("2");
-let greenTile= document.getElementById("3");
-let yellowTile= document.getElementById("4");
+
 let score = document.getElementById("score");
 let serie=[];
 let playerTurn = false;
@@ -17,7 +14,6 @@ let audio = document.getElementById("audio");
 let audiotrack = ['../audio/simonSound1.mp3', '../audio/simonSound2.mp3', '../audio/simonSound3.mp3','../audio/simonSound4.mp3'];
 let wrongAnswer = '../audio//buzzer2.wav';
 
-
 let touches = document.getElementsByTagName('rect');
 Array.from(touches).forEach(element => {
   element.addEventListener('click', checkSound);
@@ -25,43 +21,17 @@ Array.from(touches).forEach(element => {
   element.addEventListener('mouseover', mouseIn);
 });
 
-
 function mouseIn(e) {
-  switch (e.target.id) {
-    case "green":
-      greenTile.style.strokeOpacity = 0.8
-    break;
-    case "red":
-      redTile.style.strokeOpacity = 0.8
-    break;
-    case "yellow":
-      yellowTile.style.strokeOpacity = 0.8
-    break;
-    case "blue":
-      blueTile.style.strokeOpacity = 0.8
-  }
+  document.getElementById(e.srcElement.dataset.colorindex).style.strokeOpacity = 0.9;
+  
 }
-  function mouseOut(e) {
-    switch (e.target.id) {
-      case "green":
-        greenTile.style.strokeOpacity = 1
-      break;
-      case "red":
-        redTile.style.strokeOpacity = 1
-      break;
-      case "yellow":
-        yellowTile.style.strokeOpacity = 1
-      break;
-      case "blue":
-        blueTile.style.strokeOpacity = 1
-    }
+function mouseOut(e) {
+    document.getElementById(e.srcElement.dataset.colorindex).style.strokeOpacity = 1; 
 }
-
 
 function checkSound(tile) {
   if(playerTurn) {
   responses.push(tile.srcElement.dataset.colorindex);
-  console.log(responses);
 
     if (Number(responses[long]) == serie[long]) {
       audio.src = audiotrack[tile.srcElement.dataset.colorindex-1];
@@ -73,7 +43,6 @@ function checkSound(tile) {
       long=0;
       if ( strictMode) {
         resetGame();
-
       }
       else if (!strictMode){
         setTimeout(function() {playTrack()}, 2000);
@@ -98,7 +67,6 @@ function checkSound(tile) {
           speed=1000;
         }
       responses=[];
-      console.log("woooo");
       score.innerHTML=round.length;
       round.push(round.length);
       long=0;
@@ -155,43 +123,11 @@ function playSound(elem) {
     
   if (playPromise !== undefined) {
     playPromise.then(_ => {
-      color = document.getElementById(elem).getAttribute('stroke')
-      let newColor = LightenDarkenColor(color, 60);
-      document.getElementById(elem).setAttribute('stroke', newColor);
-      setTimeout(function() {document.getElementById(elem).setAttribute('stroke', color)}, 1200);
-   
+      let sel="sel"+elem;
+      document.getElementById(elem).classList.toggle( sel );
+      setTimeout(function() {document.getElementById(elem).classList.toggle( sel);}, 1200);
     })
-    .catch(error => {
-
-    });
+    .catch(error => { });
   }
 
-}
-
-
-
-function LightenDarkenColor(col, amt) {
-  
-    var usePound = false;
-  
-    if (col[0] == "#") {
-        col = col.slice(1);
-        usePound = true;
-    }
- 
-    var num = parseInt(col,16);
-    var r = (num >> 16) + amt;
-    if (r > 255) r = 255;
-    else if  (r < 0) r = 0;
- 
-    var b = ((num >> 8) & 0x00FF) + amt;
-    if (b > 255) b = 255;
-    else if  (b < 0) b = 0;
- 
-    var g = (num & 0x0000FF) + amt;
-    if (g > 255) g = 255;
-    else if (g < 0) g = 0;
- 
-    return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
-  
 }
