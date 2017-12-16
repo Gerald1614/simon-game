@@ -10,7 +10,7 @@ img {
   background: red; /* For browsers that do not support gradients */
   background: linear-gradient(red, yellow, green, blue); /* Standard syntax (must be last) */
   }
-#score,#labelScore {
+#score {
   color:red;
   padding: 5px;
   border-radius: 5%;

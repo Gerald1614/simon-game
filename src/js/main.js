@@ -41,6 +41,7 @@ function checkSound(tile) {
     }
     else {
       audio.src = wrongAnswer;
+      playerTurn=false;
       responses=[];
       long=0;
       if ( strictMode) {
@@ -51,25 +52,25 @@ function checkSound(tile) {
       }
     }
     playSound();
-
+    console.log(round);
     if (responses.length == round.length) {
       playerTurn=false;
-      if (round==3) {
-        score.innerHTML="WIN";
-        setTimeout(function() {startGame()}, 5000);
+      if (round.length==20) {
+        score.innerHTML="PLAYER WON";
+        setTimeout(function() {startGame()}, 4000);
       }
       else { 
-        if (round>=13) {
+        if (round.length>=13) {
         speed=900;
         }
-        else if (round>=9) {
+        else if (round.length>=9) {
           speed=1000;
         }
-        else if (round>=5) {
+        else if (round.length>=5) {
           speed=1000;
         }
       responses=[];
-      score.innerHTML=round.length;
+      score.innerHTML="COUNTS: " + round.length;
       round.push(round.length);
       long=0;
       setTimeout(function() {playTrack()}, 2000);
@@ -100,7 +101,8 @@ function initiateSerie() {
 function resetGame() {
   round=[0];
   responses=[];
-  score.innerHTML="0";
+  score.innerHTML="COUNTS: 0";
+  long=0;
   setTimeout(function() {playTrack()}, 2000);
 }
 
